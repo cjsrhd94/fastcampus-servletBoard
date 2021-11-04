@@ -72,27 +72,28 @@ public class BoardDAO {
 	}
 	
 	// 글 상세 조회
-	public void getBoard(BoardVO vo) {
+	public BoardVO getBoard(BoardVO vo) {
+		BoardVO board = null;
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(BOARD_GET);
 			stmt.setInt(1, vo.getSeq());
 			rs = stmt.executeQuery();
 			if(rs.next()) {
-				System.out.println("번호 : " + rs.getInt("SEQ"));
-				System.out.println("제목 : " + rs.getString("TITLE"));
-				System.out.println("작성자 : " + rs.getString("WRITER"));
-				System.out.println("내용 : " + rs.getString("CONTENT"));
-				System.out.println("등록일 : " + rs.getDate("REGDATE"));
-				System.out.println("조회수 : " + rs.getInt("CNT"));
-			} else {
-				System.out.println(vo.getSeq() + "번 게시글은 존재하지 않습니다.");
+				board = new BoardVO();
+				board.setSeq(rs.getInt("SEQ"));
+				board.setTitle(rs.getString("TITLE"));
+				board.setWriter(rs.getString("WRITER"));
+				board.setContent(rs.getString("CONTENT"));
+				board.setRegDate(rs.getDate("REGDATE"));
+				board.setCnt(rs.getInt("CNT"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			JDBCUtil.close(rs, stmt, conn);
 		}
+		return board;
 	}
 	
 	// 글 목록 검색

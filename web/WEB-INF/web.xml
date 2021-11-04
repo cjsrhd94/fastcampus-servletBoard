@@ -74,4 +74,12 @@
         <servlet-name>getBoardList</servlet-name>
         <url-pattern>/getBoardList.do</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>getBoard</servlet-name>
+        <servlet-class>com.fastcampus.controller.board.GetBoardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getBoard</servlet-name>
+        <url-pattern>/getBoard.do</url-pattern>
+    </servlet-mapping>
 </web-app>
