@@ -82,4 +82,12 @@
         <servlet-name>getBoard</servlet-name>
         <url-pattern>/getBoard.do</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>updateBoard</servlet-name>
+        <servlet-class>com.fastcampus.controller.board.UpdateBoardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateBoard</servlet-name>
+        <url-pattern>/updateBoard.do</url-pattern>
+    </servlet-mapping>
 </web-app>
