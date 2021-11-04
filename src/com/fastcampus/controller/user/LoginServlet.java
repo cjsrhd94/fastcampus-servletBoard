@@ -12,7 +12,6 @@ import com.fastcampus.biz.user.UserDAO;
 import com.fastcampus.biz.user.UserVO;
 
 public class LoginServlet extends HttpServlet {
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 사용자 입력정보(id, password) 추출
 		// 사용자가 입력한 파라미터 정보를 추출한다.
@@ -27,20 +26,20 @@ public class LoginServlet extends HttpServlet {
 		UserDAO userDAO = new UserDAO();
 		UserVO user = userDAO.getUser(vo);
 		
-		// 3. 응답 화면 구성
-		// 출력 스트림을 얻기 전에 응답 메시지에 대한 인코딩을 설정한다. 
-		response.setContentType("text/html;charset=EUC-KR");
-		
-		// Http 응답 프로토콜 Body와 연결된 출력 스트림을 얻는다.
-		PrintWriter out = response.getWriter();
+//		// 3. 응답 화면 구성
+//		// 출력 스트림을 얻기 전에 응답 메시지에 대한 인코딩을 설정한다.
+//		response.setContentType("text/html;charset=EUC-KR");
+//
+//		// Http 응답 프로토콜 Body와 연결된 출력 스트림을 얻는다.
+//		PrintWriter out = response.getWriter();
 
 		if(user != null) {
-			out.println("<h1>로그인 성공</h1>");
+			response.sendRedirect("getBoardList.do");
 		} else {
-			out.println("<h1>로그인 실패</h1>");
+			response.sendRedirect("login.html");
 		}
 		
-		out.close();
+//		out.close();
 	}
 
 }
