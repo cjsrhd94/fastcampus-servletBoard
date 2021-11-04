@@ -1,0 +1,15 @@
+.idea/
+*.iml
+target
+build
+*~
+*.log
+.classpath
+.project
+*.ipr
+*.iws
+.settings
+.git
+.svn
+*.class
+*.bak
