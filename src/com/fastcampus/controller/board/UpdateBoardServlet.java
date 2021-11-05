@@ -30,7 +30,9 @@ public class UpdateBoardServlet extends HttpServlet {
 		boardDAO.updateBoard(vo);
 		
 		// 3. 화면 네비게이션
-		response.sendRedirect("getBoardList.do");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/getBoardList.do");
+		dispatcher.forward(request, response);
+//		response.sendRedirect("getBoardList.do");
 	}
 
 }

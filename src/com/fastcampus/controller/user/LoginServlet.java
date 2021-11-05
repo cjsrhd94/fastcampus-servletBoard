@@ -3,6 +3,7 @@ package com.fastcampus.controller.user;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,12 +36,17 @@ public class LoginServlet extends HttpServlet {
 //		// Http 응답 프로토콜 Body와 연결된 출력 스트림을 얻는다.
 //		PrintWriter out = response.getWriter();
 
+		RequestDispatcher dispatcher = null;
 		if(user != null) {
-			response.sendRedirect("getBoardList.do");
+			request.setAttribute("userName", user.getName());
+			dispatcher = request.getRequestDispatcher("/getBoardList.do");
+//			response.sendRedirect("getBoardList.do");
 		} else {
-			response.sendRedirect("login.html");
+			dispatcher = request.getRequestDispatcher("/login.html");
+//			response.sendRedirect("login.html");
 		}
-		
+		dispatcher.forward(request,response);
+
 //		out.close();
 	}
 

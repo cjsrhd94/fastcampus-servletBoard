@@ -3,6 +3,7 @@ package com.fastcampus.controller.board;
 import com.fastcampus.biz.board.BoardDAO;
 import com.fastcampus.biz.board.BoardVO;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,6 +33,8 @@ public class InsertBoardServlet extends HttpServlet {
         boardDAO.insertBoard(vo);
 
         // 3. 화면 네비게이션
-        response.sendRedirect("getBoardList.do");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/getBoardList.do");
+        dispatcher.forward(request, response);
+//        response.sendRedirect("getBoardList.do");
     }
 }
