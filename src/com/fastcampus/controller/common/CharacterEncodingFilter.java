@@ -1,8 +1,12 @@
 package com.fastcampus.controller.common;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebInitParam;
 import java.io.IOException;
 
+@WebFilter(urlPatterns = "*.do",
+        initParams = {@WebInitParam(name = "encoding", value = "EUC-KR")})
 public class CharacterEncodingFilter implements Filter {
 
     private String boardEncoding;

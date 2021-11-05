@@ -1,9 +1,11 @@
 package com.fastcampus.controller.common;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+@WebFilter(urlPatterns = "*.do")
 public class TimeCheckFilter implements Filter {
 
     public TimeCheckFilter() {

@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fastcampus.biz.board.BoardDAO;
 import com.fastcampus.biz.board.BoardVO;
+
 @WebServlet(urlPatterns = "/updateBoard.do")
 public class UpdateBoardServlet extends HttpServlet {
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 사용자 입력정보 추출
 		String seq = request.getParameter("seq");
