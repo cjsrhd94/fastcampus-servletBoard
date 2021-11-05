@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fastcampus.biz.board.BoardDAO;
 import com.fastcampus.biz.board.BoardVO;
-
+@WebServlet(urlPatterns = "/updateBoard.do")
 public class UpdateBoardServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
