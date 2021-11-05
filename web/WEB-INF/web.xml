@@ -90,4 +90,12 @@
         <servlet-name>updateBoard</servlet-name>
         <url-pattern>/updateBoard.do</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>deleteBoard</servlet-name>
+        <servlet-class>com.fastcampus.controller.board.DeleteBoardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteBoard</servlet-name>
+        <url-pattern>/deleteBoard.do</url-pattern>
+    </servlet-mapping>
 </web-app>
