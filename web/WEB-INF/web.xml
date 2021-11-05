@@ -104,4 +104,13 @@
 <!--        <servlet-name>deleteBoard</servlet-name>-->
 <!--        <url-pattern>/deleteBoard.do</url-pattern>-->
 <!--    </servlet-mapping>-->
+
+    <filter>
+        <filter-name>timeCheck</filter-name>
+        <filter-class>com.fastcampus.controller.common.TimeCheckFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>timeCheck</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
 </web-app>
