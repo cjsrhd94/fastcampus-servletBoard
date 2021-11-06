@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fastcampus.biz.board.BoardDAO;
 import com.fastcampus.biz.board.BoardVO;
@@ -16,6 +17,8 @@ import com.fastcampus.biz.board.BoardVO;
 public class GetBoardServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+
 		// 1. 사용자 입력정보 추출
 		String seq = request.getParameter("seq");
 		
@@ -39,6 +42,7 @@ public class GetBoardServlet extends HttpServlet {
 		out.println("<body>");
 		out.println("<center>");
 		out.println("<h1>게시 글 상세</h1>");
+		out.println("<h3><font color='red'>" + session.getAttribute("userName") + " </font>님 로그인 환영합니다...<a href='logout.do'>LOG-OUT</a></h3>");
 		out.println("<hr>");
 		out.println("<form action='updateBoard.do' method='post'>");
 		out.println("<input name='seq' type='hidden' value='" + board.getSeq() + "'/>");
@@ -72,7 +76,11 @@ public class GetBoardServlet extends HttpServlet {
 		out.println("</form>");
 		out.println("<hr>");
 		out.println("<a href='insertBoard.html'>글등록</a>&nbsp;&nbsp;&nbsp;");
-		out.println("<a href='deleteBoard.do?seq=" + board.getSeq() + "'>글삭제</a>&nbsp;&nbsp;&nbsp;");
+		String userRole = (String) session.getAttribute("userRole");
+		if(userRole.equals("ADMIN")){
+			out.println("<a href='deleteBoard.do?seq=" + board.getSeq() + "'>글삭제</a>&nbsp;&nbsp;&nbsp;");
+
+		}
 		out.println("<a href='getBoardList.do'>글목록</a>");
 		out.println("</center>");
 		out.println("</body>");

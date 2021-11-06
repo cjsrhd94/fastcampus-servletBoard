@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fastcampus.biz.user.UserDAO;
 import com.fastcampus.biz.user.UserVO;
@@ -38,7 +39,12 @@ public class LoginServlet extends HttpServlet {
 
 		RequestDispatcher dispatcher = null;
 		if(user != null) {
-			request.setAttribute("userName", user.getName());
+			// 로그인 성공한 경우, 세션에 userID 정보를 등록한다.
+			HttpSession session = request.getSession();
+//			session.setMaxInactiveInterval(10);	// 언제까지 세션을 유지할 것인가 (단위 : 초)
+			session.setAttribute("userID", user.getId());
+			session.setAttribute("userName", user.getName());
+			session.setAttribute("userRole", user.getRole());
 			dispatcher = request.getRequestDispatcher("/getBoardList.do");
 //			response.sendRedirect("getBoardList.do");
 		} else {
