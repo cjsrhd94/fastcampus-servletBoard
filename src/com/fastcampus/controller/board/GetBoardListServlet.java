@@ -17,12 +17,24 @@ import com.fastcampus.biz.board.BoardVO;
 public class GetBoardListServlet extends HttpServlet {
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 1. DB 연동 처리
+
+        // 1. 사용자 입력정보 추출
+        String searchCondition = request.getParameter("searchCondition");
+        String searchKeyword = request.getParameter("searchKeyword");
+
+        // Null check
+        if(searchCondition == null) searchCondition = "TITLE";
+        if(searchKeyword == null) searchKeyword = "";
+
+        // 2. DB 연동 처리
         BoardVO vo = new BoardVO();
+        vo.setSearchCondition(searchCondition);
+        vo.setSearchKeyword(searchKeyword);
+
         BoardDAO boardDAO = new BoardDAO();
         List<BoardVO> boardList = boardDAO.getBoardList(vo);
 
-        // 2. 응답 화면 구성
+        // 3. 응답 화면 구성
         // 출력 스트림을 얻기 전에 응답 메시지에 대한 인코딩을 설정한다.
         response.setContentType("text/html;charset=EUC-KR");
 
@@ -40,7 +52,7 @@ public class GetBoardListServlet extends HttpServlet {
         out.println("<h1>게시 글 목록</h1>");
         out.println("<h3><font color='red'>" + request.getAttribute("userName") + " </font>님 로그인 환영합니다...<a href='logout_proc.jsp'>LOG-OUT</a></h3>");
         out.println("<!-- 검색 시작 -->");
-        out.println("<form action='getBoardList.jsp' method='post'>");
+        out.println("<form action='getBoardList.do' method='post'>");
         out.println("<table border='1' cellpadding='0' cellspacing='0' width='700'>");
         out.println("<tr>");
         out.println("<td align='right'>");
